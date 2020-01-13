@@ -4,10 +4,11 @@ class CartCest
     public function _before(AcceptanceTester $I)
     {
         $I->amOnPage('/');
+        $I->wait(2);
     }
 
     public function buySuccessfully(AcceptanceTester $I)
     {
-        // write a positive login test 
+        $I->see('Store information');
     }
 }

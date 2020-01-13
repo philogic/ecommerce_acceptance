@@ -6,7 +6,7 @@ suites:
         modules:
             enabled:
                 - WebDriver:
-                    url: http://localhost
+                    url: http://automationpractice.com/index.php
                     browser: chrome
                 - \Helper\Acceptance
                 
