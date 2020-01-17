@@ -10,10 +10,12 @@ class CartCest
         $I->wait(2);
     }
 
+
+    /**
     public function signUpSuccessfully(AcceptanceTester $I, Cart $page)
     {
         $page->createAccount(
-            'perpetrator@box.pl',
+            'perpetrator9@box.pl',
             'Mr',
             'John',
             'Kovalsky',
@@ -31,6 +33,14 @@ class CartCest
         );
         $I->seeElement('//*[@title="View my customer account"]');
         $I->see('John Kovalsky');
+    }
+    */
 
+
+    public function logInSuccessfully(AcceptanceTester $I, Cart $page)
+    {
+        $page->logIn('perpetrator@box.pl', 'kowalPass120');
+        $I->seeElement('//*[@title="View my customer account"]');
+        $I->see('John Kovalsky');
     }
 }

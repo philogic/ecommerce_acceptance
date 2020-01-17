@@ -23,6 +23,7 @@ class Cart
     public $mobilePhoneField = '#phone_mobile';
     public $addressAliasField = '#alias';
     public $registerAccountButton = '#submitAccount';
+    public $emailLoginField = '#email';
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
@@ -88,6 +89,17 @@ class Cart
         $I->fillField($this->mobilePhoneField, $mobilePhoneNumber);
         $I->fillField($this->addressAliasField, $addressAlias);
         $I->click($this->registerAccountButton);
+        $I->wait(2);
+    }
+
+    public function logIn($login, $password)
+    {
+        $I = $this->acceptanceTester;
+        $I->click($this->signInButton);
+        $I->wait(2);
+        $I->fillField($this->emailLoginField, $login);
+        $I->fillField($this->passwordField, $password);
+        $I->pressKey($this->passwordField, WebDriverKeys::ENTER);
         $I->wait(2);
     }
 
