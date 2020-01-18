@@ -24,6 +24,7 @@ class Cart
     public $addressAliasField = '#alias';
     public $registerAccountButton = '#submitAccount';
     public $emailLoginField = '#email';
+    public $logOutButton = 'a.logout';
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
@@ -101,6 +102,12 @@ class Cart
         $I->fillField($this->passwordField, $password);
         $I->pressKey($this->passwordField, WebDriverKeys::ENTER);
         $I->wait(2);
+    }
+
+    public function logOut()
+    {
+        $I = $this->acceptanceTester;
+        $I->click($this->logOutButton);
     }
 
 }

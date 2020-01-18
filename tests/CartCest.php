@@ -15,9 +15,9 @@ class CartCest
     public function signUpSuccessfully(AcceptanceTester $I, Cart $page)
     {
         $page->createAccount(
-            'perpetrator9@box.pl',
-            'Mr',
-            'John',
+            'perpetrator20@box.pl',
+            'Mrs',
+            'Jaqueline',
             'Kovalsky',
             'kowalPass120',
             '20',
@@ -32,15 +32,23 @@ class CartCest
             'Basic address'
         );
         $I->seeElement('//*[@title="View my customer account"]');
-        $I->see('John Kovalsky');
+        $I->see('Jaqueline Kovalsky');
     }
     */
 
-
     public function logInSuccessfully(AcceptanceTester $I, Cart $page)
     {
-        $page->logIn('perpetrator@box.pl', 'kowalPass120');
+        $page->logIn('perpetrator20@box.pl', 'kowalPass120');
         $I->seeElement('//*[@title="View my customer account"]');
-        $I->see('John Kovalsky');
+        $I->see('Jaqueline Kovalsky');
     }
+
+    public function logOutSuccessfully(AcceptanceTester $I, Cart $page)
+    {
+        $page->logIn('perpetrator20@box.pl', 'kowalPass120');
+        $page->logOut();
+        $I->dontSeeElement('//*[@title="View my customer account"]');
+        $I->dontSee('Jaqueline Kovalsky');
+    }
+
 }
