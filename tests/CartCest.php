@@ -51,4 +51,11 @@ class CartCest
         $I->dontSee('Jaqueline Kovalsky');
     }
 
+    public function addDressSuccessfully(AcceptanceTester $I, Cart $page)
+    {
+        $page->logIn('perpetrator20@box.pl', 'kowalPass120');
+        $page->addDressToCart();
+        $I->see('There is 1 item in your cart.');
+    }
+
 }

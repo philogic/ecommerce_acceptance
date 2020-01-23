@@ -25,6 +25,10 @@ class Cart
     public $registerAccountButton = '#submitAccount';
     public $emailLoginField = '#email';
     public $logOutButton = 'a.logout';
+    public $womenSection = '//a[@title="Women"]';
+    public $eveningDressLink = '//a[@title="Evening Dresses"]';
+    public $printedDressImageLink = 'a[title="Printed Dress"]';
+    public $addToCartButton = 'a[title="Add to cart"]';
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
@@ -101,13 +105,24 @@ class Cart
         $I->fillField($this->emailLoginField, $login);
         $I->fillField($this->passwordField, $password);
         $I->pressKey($this->passwordField, WebDriverKeys::ENTER);
-        $I->wait(2);
+        $I->wait(3);
     }
 
     public function logOut()
     {
         $I = $this->acceptanceTester;
         $I->click($this->logOutButton);
+    }
+
+    public function addDressToCart()
+    {
+        $I = $this->acceptanceTester;
+        $I->moveMouseOver($this->womenSection);
+        $I->waitForElementClickable($this->eveningDressLink, 5);
+        $I->click($this->eveningDressLink);
+        $I->moveMouseOver($this->printedDressImageLink);
+        $I->click($this->addToCartButton);
+        $I->wait(3);
     }
 
 }
