@@ -29,6 +29,13 @@ class Cart
     public $eveningDressLink = '//a[@title="Evening Dresses"]';
     public $printedDressImageLink = 'a[title="Printed Dress"]';
     public $addToCartButton = 'a[title="Add to cart"]';
+    public $checkOutButton = 'a[title="Proceed to checkout"]';
+    public $orderSummaryCheckOutButton = '#center_column > p.cart_navigation.clearfix > a.button.btn.btn-default.standard-checkout.button-medium';
+    public $checkOutAddressButton = 'button[name="processAddress"]';
+    public $termsOfServiceCheckbox = 'input#cgv';
+    public $checkOutDeliveryButton = '#form > p > button';
+    public $payByBankWireLink = '//p[@class="payment_module"]/a[@class="bankwire"]';
+    public $orderConfirmButton = '//button/span[contains(text(), "I confirm my order")]';
 
     /**
      * Declare UI map for this page here. CSS or XPath allowed.
@@ -123,6 +130,25 @@ class Cart
         $I->moveMouseOver($this->printedDressImageLink);
         $I->click($this->addToCartButton);
         $I->wait(3);
+    }
+
+    public function checkOut()
+    {
+        $I = $this->acceptanceTester;
+        $I->click($this->checkOutButton);
+        $I->waitForElement($this->orderSummaryCheckOutButton);
+        $I->click($this->orderSummaryCheckOutButton);
+        $I->waitForElement($this->checkOutAddressButton);
+        $I->click($this->checkOutAddressButton);
+
+        $I->waitForElement($this->termsOfServiceCheckbox);
+        $I->waitForElement($this->checkOutDeliveryButton);
+        $I->click($this->termsOfServiceCheckbox);
+        $I->click($this->checkOutDeliveryButton);
+        $I->waitForElement($this->payByBankWireLink);
+        $I->click($this->payByBankWireLink);
+        $I->waitForElement($this->orderConfirmButton);
+        $I->click($this->orderConfirmButton);
     }
 
 }

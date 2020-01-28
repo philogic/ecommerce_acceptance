@@ -58,4 +58,13 @@ class CartCest
         $I->see('There is 1 item in your cart.');
     }
 
+    public function completeDressOrderSuccessfully(AcceptanceTester $I, Cart $page)
+    {
+        $page->logIn('perpetrator20@box.pl', 'kowalPass120');
+        $page->addDressToCart();
+        $page->checkOut();
+        $I->see('ORDER CONFIRMATION');
+        $I->see('Your order on My Store is complete.');
+    }
+
 }
